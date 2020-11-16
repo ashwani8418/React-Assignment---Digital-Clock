@@ -41,7 +41,7 @@ class App extends Component {
     }
     
     padNumbertoTwoDigit(num) {
-        return `${num>10 ? "" : "0"}${num}`;
+        return `${num<10 ? "0" : ""}${num}`;
     }
 }
 
