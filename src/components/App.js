@@ -15,23 +15,25 @@ class App extends Component {
         </div >
         );
     }
-    ComponentDidMount() {
-        this.intervalId = setInterval(() => {
-            this.setState({ 
-                time: new Date()
+    componentDidMount(){
+        this.intervalId = setInterval(() =>  {
+            this.setState({
+                time : new Date()
             })
-        }, 1 * 1000);
+        }, 1*1000);
     }
 
-    ComponentWillUnmount(){
+    componentWillUnmount(){
         clearInterval(this.intervalId);
     }
 
     getTimeString() {
         const currTime = this.state.time;
         const [hours, minutes, seconds] = [currTime.getHours(), currTime.getMinutes(), currTime.getSeconds(),];
+
         const AmorPm = hours >= 12 ? "PM" : "AM";
         const twelveHrFormat = hours > 12 ? hours - 12 : hours;
+
         const hourString = this.padNumbertoTwoDigit(twelveHrFormat);
         const minString = this.padNumbertoTwoDigit(minutes);
         const secString = this.padNumbertoTwoDigit(seconds);
