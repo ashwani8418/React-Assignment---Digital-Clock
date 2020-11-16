@@ -30,7 +30,7 @@ class App extends Component {
     getTimeString() {
         const currTime = this.state.time;
         const [hours, minutes, seconds] = [currTime.getHours(), currTime.getMinutes(), currTime.getSeconds(),];
-        const AmorPm = hours >= 12 ? "Pm" : "Am";
+        const AmorPm = hours >= 12 ? "PM" : "AM";
         const twelveHrFormat = hours > 12 ? hours - 12 : hours;
         const hourString = this.padNumbertoTwoDigit(twelveHrFormat);
         const minString = this.padNumbertoTwoDigit(minutes);
@@ -44,6 +44,5 @@ class App extends Component {
         return `${num>10 ? "" : "0"}${num}`;
     }
 }
-
 
 export default App;
