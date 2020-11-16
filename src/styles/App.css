@@ -1,6 +1,7 @@
 .Clock {
-  border: 2px solid black;
-  background-color: #fff123;
-  width: 8%;
-  float: right;
+    border: 2px solid black;
+    background-color: #fff123;
+    width: auto;
+    float: left;
+    
 }

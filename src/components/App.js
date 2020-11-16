@@ -1,14 +1,47 @@
-import React, {Component, useState} from "react";
+import React, { Component, useState } from "react";
 import '../styles/App.css';
 
 class App extends Component {
+    constructor(props){
+        super(props);
+        this.state ={ time:new Date(),};
+        this.intervalId=null;
+    }
     render() {
 
-        return(
-            <>
-               
-            </>
-        )
+        return ( 
+        <div className="Clock">
+            <h3 id ="time"> {this.getTimeString()} </h3> 
+        </div >
+        );
+    }
+    ComponentDidMount() {
+        this.intervalId = setInterval(() => {
+            this.setState({ 
+                time: new Date()
+            })
+        }, 1 * 1000);
+    }
+
+    ComponentWillUnmount(){
+        clearInterval(this.intervalId);
+    }
+
+    getTimeString() {
+        const currTime = this.state.time;
+        const [hours, minutes, seconds] = [currTime.getHours(), currTime.getMinutes(), currTime.getSeconds(),];
+        const AmorPm = hours >= 12 ? "Pm" : "Am";
+        const twelveHrFormat = hours > 12 ? hours - 12 : hours;
+        const hourString = this.padNumbertoTwoDigit(twelveHrFormat);
+        const minString = this.padNumbertoTwoDigit(minutes);
+        const secString = this.padNumbertoTwoDigit(seconds);
+
+        const timeString = `${hourString}:${minString}:${secString} ${AmorPm}`;
+        return timeString;
+    }
+    
+    padNumbertoTwoDigit(num) {
+        return `${num>10 ? "" : "0"}${num}`;
     }
 }
 
