@@ -11,7 +11,7 @@ class App extends Component {
 
         return ( 
         <div className="Clock">
-            <h3 id ="time"> {this.getTimeString()} </h3> 
+            <h3 id ="time">{this.getTimeString()} </h3> 
         </div >
         );
     }
