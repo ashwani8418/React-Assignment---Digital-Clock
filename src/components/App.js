@@ -34,11 +34,12 @@ class App extends Component {
         const AmorPm = hours >= 12 ? "PM" : "AM";
         const twelveHrFormat = hours > 12 ? hours - 12 : hours;
 
-        const hourString = this.padNumbertoTwoDigit(twelveHrFormat);
+        const hourString = ' '+ twelveHrFormat;
         const minString = this.padNumbertoTwoDigit(minutes);
         const secString = this.padNumbertoTwoDigit(seconds);
 
-        const timeString = `${hourString}:${minString}:${secString} ${AmorPm}`;
+        var timeString = `${hourString}:${minString}:${secString} ${AmorPm}`;
+        //var n=toLocaleTimeString();
         return timeString;
     }
     
