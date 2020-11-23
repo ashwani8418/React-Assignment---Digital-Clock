@@ -1,51 +1,57 @@
-import React, { Component, useState } from "react";
+import React, {Component, useState} from "react";
 import '../styles/App.css';
 
 class App extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={ time:new Date(),};
-        this.intervalId=null;
+        this.state = {
+            time: new Date(),
+        };
+        this.intervalId = null;
     }
     render() {
 
-        return ( 
-        <div className="Clock">
-            <h3 id ="time">{this.getTimeString()} </h3> 
-        </div >
+        return(
+            <div className="Clock">
+                <h3 id="time">{this.getTimeString()}</h3>
+            </div>
         );
     }
-    componentDidMount(){
-        this.intervalId = setInterval(() =>  {
+
+    componentDidMount() {
+        this.intervalId = setInterval(() => {
             this.setState({
-                time : new Date()
+                time: new Date()
             })
         }, 1*1000);
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearInterval(this.intervalId);
     }
 
     getTimeString() {
         const currTime = this.state.time;
-        const [hours, minutes, seconds] = [currTime.getHours(), currTime.getMinutes(), currTime.getSeconds(),];
+        const [hours, minutes, seconds] = [
+            currTime.getHours(),
+            currTime.getMinutes(),
+            currTime.getSeconds(),
+        ];
+        
+        const amOrPm = hours >= 12 ? "PM" : "AM";
+        const twelveHourFormat = hours > 12 ? hours -12: hours;
+        const hourString = '' + twelveHourFormat;
+        const minuteString = this.padNumberToTwoDigits(minutes);
+        const secondString = this.padNumberToTwoDigits(seconds);
 
-        const AmorPm = hours >= 12 ? "PM" : "AM";
-        const twelveHrFormat = hours > 12 ? hours - 12 : hours;
-
-        const hourString = '0'+ twelveHrFormat;
-        const minString = this.padNumbertoTwoDigit(minutes);
-        const secString = this.padNumbertoTwoDigit(seconds);
-
-        var timeString = `${hourString}:${minString}:${secString} ${AmorPm}`;
-        //var n=toLocaleTimeString();
+        const timeString = `${hourString}:${minuteString}:${secondString} ${amOrPm}`;
         return timeString;
     }
-    
-    padNumbertoTwoDigit(num) {
-        return `${num <10 ? "0":""}${num}`;
+
+    padNumberToTwoDigits(num) {
+        return `${num < 10 ? "0":""}${num}`;
     }
 }
+
 
 export default App;
