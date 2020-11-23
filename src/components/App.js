@@ -34,7 +34,7 @@ class App extends Component {
         const AmorPm = hours >= 12 ? "PM" : "AM";
         const twelveHrFormat = hours > 12 ? hours - 12 : hours;
 
-        const hourString = '0'+ twelveHrFormat;
+        const hourString = ''+ twelveHrFormat;
         const minString = this.padNumbertoTwoDigit(minutes);
         const secString = this.padNumbertoTwoDigit(seconds);
 
